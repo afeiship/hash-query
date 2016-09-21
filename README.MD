@@ -4,6 +4,8 @@ Ruby gem for sync github repositry.
 
 ## usage:
 ```ruby
+## gem 'sync_repositry', git: 'git@github.com:afeiship/gem_sync_repositry.git', submodules: true
+
 require 'sync_repositry'
 
 # SyncRepositry.hi;

@@ -21,4 +21,9 @@ class SyncRepositry
         }
       });
     end
+
+
+    def self.discoverRoot
+      File.dirname Rugged::Repository.discover.path
+    end
 end

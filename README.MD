@@ -1,8 +1,5 @@
 # gem_sync_repositry
-
-## resource:
-+ http://guides.rubygems.org/make-your-own-gem/#your-first-gem
-+ http://blog.csdn.net/yangcs2009/article/details/42262073
+Ruby gem for sync github repositry.
 
 
 ## usage:
@@ -15,3 +12,7 @@ SyncRepositry.clone_repositry 'https://github.com/wdavidw/node-printf.git','.tmp
 ## will show:
 # Time 00:00:05  1/100ᗧᗧᗧᗧᗧ･･･････････････････････････････････････････････････････････････････････････････ 1% Progres
 ```
+
+## resource:
++ http://guides.rubygems.org/make-your-own-gem/#your-first-gem
++ http://blog.csdn.net/yangcs2009/article/details/42262073

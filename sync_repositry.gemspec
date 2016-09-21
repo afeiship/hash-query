@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
     s.name = 'sync_repositry'
-    s.version     = '1.0.0'
+    s.version     = '1.0.1'
     s.date        = '2016-09-21'
     s.summary     = 'sync github repositry'
     s.description = 'Ruby gem for sync github repositry'

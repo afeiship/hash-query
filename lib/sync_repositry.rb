@@ -2,10 +2,6 @@
 require 'rugged'
 require 'ruby-progressbar'
 class SyncRepositry
-    def self.hi
-        puts 'Hello world!'
-    end
-
     def self.clone_repositry (inUrl, inPath)
       progressbar = ProgressBar.create( :format => "%a %b %c/%C\u{15E7}%i %p%% %t",
                           :progress_mark  => '=',

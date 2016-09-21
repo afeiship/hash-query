@@ -2,7 +2,7 @@
 require 'rugged'
 require 'ruby-progressbar'
 class SyncRepositry
-    def self.clone_repositry (inUrl, inPath)
+    def self.clone_at (inUrl, inPath)
       progressbar = ProgressBar.create( :format => "%a %b %c/%C\u{15E7}%i %p%% %t",
                           :progress_mark  => '=',
                           :throttle_rate => 0.1,
@@ -23,7 +23,7 @@ class SyncRepositry
     end
 
 
-    def self.discoverRoot
+    def self.discover_root
       File.dirname Rugged::Repository.discover.path
     end
 end

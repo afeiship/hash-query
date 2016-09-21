@@ -12,8 +12,8 @@ Ruby gem for sync github repositry.
 require 'sync_repositry'
 
 # SyncRepositry.hi;
-SyncRepositry.clone_repositry 'https://github.com/wdavidw/node-printf.git','.tmp';
-puts SyncRepositry.discoverRoot;
+SyncRepositry.clone_at 'https://github.com/wdavidw/node-printf.git','.tmp';
+puts SyncRepositry.discover_root;
 
 ## will show:
 # Time 00:00:05  1/100ᗧᗧᗧᗧᗧ･･･････････････････････････････････････････････････････････････････････････････ 1% Progres

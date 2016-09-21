@@ -4,5 +4,5 @@
 require 'sync_repositry'
 
 # SyncRepositry.hi;
-# SyncRepositry.clone_repositry 'https://github.com/wdavidw/node-printf.git','.tmp';
-puts SyncRepositry.discoverRoot
+SyncRepositry.clone_repositry 'https://github.com/wdavidw/node-printf.git','.tmp';
+puts SyncRepositry.discoverRoot;

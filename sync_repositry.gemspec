@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
     s.name = 'sync_repositry'
-    s.version     = '1.0.1'
-    s.date        = '2016-09-21'
-    s.summary     = 'sync github repositry'
+    s.version     = '1.0.2'
+    s.date        = '2019-02-24'
+    s.summary     = 'Sync github repositry'
     s.description = 'Ruby gem for sync github repositry'
     s.authors     = ['afei']
     s.email       = '1290657123@qq.com'

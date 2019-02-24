@@ -1,6 +1,4 @@
 # frozen_string_literal: true
 # A sample Gemfile
-source "https://gems.ruby-china.org"
-
 gem 'fileutils', '0.7'
-gem 'rugged', git: 'git://github.com/libgit2/rugged.git', submodules: true
+gem 'rugged', '~> 0.27.7'

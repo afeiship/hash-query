@@ -8,7 +8,7 @@ Ruby gem for sync github repositry.
 
 ## Add below contents to file:
 # gem 'sync_repositry', git: 'git@github.com:afeiship/gem_sync_repositry.git', submodules: true
-
+require 'bundler/setup'
 require 'sync_repositry'
 
 # SyncRepositry.hi;

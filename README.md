@@ -26,6 +26,7 @@ puts SyncRepositry.discover_root;
 
 ## error:
 > An error occurred while installing rugged
+- https://stackoverflow.com/questions/27472234/an-error-occurred-while-installing-rugged
 
 ```bash
 brew install cmake 

@@ -31,4 +31,8 @@ puts SyncRepositry.discover_root;
 ```bash
 brew install cmake 
 bundle install
+
+
+# Another error: Ignoring rugged-0.27.7 because its extensions are not built. Try: gem pristine rugged --version 0.27.7
+gem pristine rugged --version 0.27.7
 ```

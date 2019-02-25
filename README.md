@@ -22,3 +22,12 @@ puts SyncRepositry.discover_root;
 ## resource:
 + http://guides.rubygems.org/make-your-own-gem/#your-first-gem
 + http://blog.csdn.net/yangcs2009/article/details/42262073
+
+
+## error:
+> An error occurred while installing rugged
+
+```bash
+brew install cmake 
+bundle install
+```

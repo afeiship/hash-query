@@ -15,6 +15,6 @@ Gem::Specification.new do |spec|
     spec.homepage    ='https://github.com/afeiship/gem_sync_repositry'
     spec.license = 'MIT'
 
-    spec.add_dependency "fileutils", "0.7"
+    spec.add_dependency "fileutils", "~> 1.1.0"
     spec.add_dependency "rugged", "~> 0.27.7"
 end

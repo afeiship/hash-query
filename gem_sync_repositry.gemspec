@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 
 Gem::Specification.new do |spec|
-    spec.name = 'sync_repositry'
+    spec.name = 'gem_sync_repositry'
     spec.version     = '1.0.2'
     spec.date        = '2019-02-24'
     spec.summary     = 'Sync github repositry'

@@ -1,8 +1,8 @@
-#!/usr/bin/env ruby -wKU
+require "gem_sync_repositry/version"
 require 'rugged'
 require 'ruby-progressbar'
 
-class SyncRepositry
+class GemSyncRepositry
     def self.clone_at (url, path)
       progressbar = ProgressBar.create( :format => "%a %b %c/%C\u{15E7}%i %p%% %t",
                           :progress_mark  => '=',

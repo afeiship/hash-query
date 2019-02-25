@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-rm -rf sync_repositry-*.gem
-gem build sync_repositry.gemspec
-# sudo gem install ./sync_repositry-1.0.2.gem
+rm -rf *_repositry-*.gem
+gem build *.gemspec
+# sudo gem install ./gem_sync_repositry-1.0.2.gem

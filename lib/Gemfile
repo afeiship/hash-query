@@ -1,0 +1,4 @@
+# frozen_string_literal: true
+# A sample Gemfile
+gem 'fileutils', '0.7'
+gem 'rugged', '~> 0.27.7'

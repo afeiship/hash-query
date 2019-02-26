@@ -1,9 +1,9 @@
 require "gem_sync_repositry/version"
-require 'rugged'
-require 'ruby-progressbar'
 
-class GemSyncRepositry
-    def self.clone_at (url, path)
+module GemSyncRepositry
+  class Error < StandardError; end
+  # Your code goes here...
+  def clone_at (url, path)
       progressbar = ProgressBar.create( :format => "%a %b %c/%C\u{15E7}%i %p%% %t",
                           :progress_mark  => '=',
                           :throttle_rate => 0.1,
@@ -24,7 +24,7 @@ class GemSyncRepositry
     end
 
 
-    def self.discover_root
+    def discover_root
       File.dirname Rugged::Repository.discover.path
     end
 end

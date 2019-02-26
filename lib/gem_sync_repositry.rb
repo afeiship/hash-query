@@ -1,4 +1,6 @@
 require "gem_sync_repositry/version"
+require "fileutils"
+require "rugged"
 
 module GemSyncRepositry
   class Error < StandardError; end

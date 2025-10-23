@@ -1,38 +1,36 @@
-# gem_sync_repositry
-Ruby gem for sync github repositry.
+# hash-query
+> Manage query parameters in URL hash.
 
+[![version][version-image]][version-url]
+[![license][license-image]][license-url]
+[![size][size-image]][size-url]
+[![download][download-image]][download-url]
 
-## usage:
-```ruby
-## create Gemfile:
-
-## Add below contents to file:
-# gem 'sync_repositry', git: 'git@github.com:afeiship/gem_sync_repositry.git', submodules: true
-require 'bundler/setup'
-require 'sync_repositry'
-
-# SyncRepositry.hi;
-SyncRepositry.clone_at 'https://github.com/wdavidw/node-printf.git','.tmp';
-puts SyncRepositry.discover_root;
-
-## will show:
-# Time 00:00:05  1/100ᗧᗧᗧᗧᗧ･･･････････････････････････････････････････････････････････････････････････････ 1% Progres
+## installation
+```shell
+yarn add @jswork/hash-query
 ```
 
-## resource:
-+ http://guides.rubygems.org/make-your-own-gem/#your-first-gem
-+ http://blog.csdn.net/yangcs2009/article/details/42262073
+## usage
+```js
+import HashQuery from '@jswork/hash-query';
 
+HashQuery(1024);
 
-## error:
-> An error occurred while installing rugged
-- https://stackoverflow.com/questions/27472234/an-error-occurred-while-installing-rugged
-
-```bash
-brew install cmake 
-bundle install
-
-
-# Another error: Ignoring rugged-0.27.7 because its extensions are not built. Try: gem pristine rugged --version 0.27.7
-gem pristine rugged --version 0.27.7
+// [1000, 0, 20, 4]
 ```
+
+## license
+Code released under [the MIT license](https://github.com/afeiship/@jswork/hash-query/blob/master/LICENSE.txt).
+
+[version-image]: https://img.shields.io/npm/v/@jswork/hash-query
+[version-url]: https://npmjs.org/package/@jswork/hash-query
+
+[license-image]: https://img.shields.io/npm/l/@jswork/hash-query
+[license-url]: https://github.com/afeiship/@jswork/hash-query/blob/master/LICENSE.txt
+
+[size-image]: https://img.shields.io/bundlephobia/minzip/@jswork/hash-query
+[size-url]: https://github.com/afeiship/@jswork/hash-query/blob/master/dist/@jswork/hash-query.min.js
+
+[download-image]: https://img.shields.io/npm/dm/@jswork/hash-query
+[download-url]: https://www.npmjs.com/package/@jswork/hash-query

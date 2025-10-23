@@ -61,6 +61,26 @@ class HashQuery {
   }
 
   /**
+   * 增量更新查询参数（merge）
+   * @param partialParams 键值对对象，值为 null/undefined 表示删除该 key
+   * @param replace 是否使用 replaceState
+   */
+  update(partialParams: Record<string, string | null | undefined>, replace = false): void {
+    const current = this.get();
+
+    // 应用更新
+    for (const [key, value] of Object.entries(partialParams)) {
+      if (value == null) {
+        current.delete(key); // 删除 null/undefined 的 key
+      } else {
+        current.set(key, String(value)); // 覆盖或新增
+      }
+    }
+
+    this.set(current, replace);
+  }
+
+  /**
    * 将当前 hash 查询参数转换为普通 JavaScript 对象
    * 注意：若存在重复 key，只保留最后一个值
    * @returns Record<string, string>

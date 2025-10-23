@@ -47,4 +47,31 @@ describe('HashQuery', () => {
       expect(hq.toJson()).toEqual({ theme: 'dark' });
     });
   });
+
+  describe('update()', () => {
+    it('merges new params with existing ones', () => {
+      window.location.hash = '#/?theme=light&lang=zh';
+      const hq = new HashQuery();
+      hq.update({ debug: 'true', lang: 'en' });
+
+      // ✅ 正确期望：包含 #
+      expect(window.history.pushState).toHaveBeenCalledWith(
+        null,
+        '',
+        '/test#/?theme=light&lang=en&debug=true'
+      );
+    });
+
+    it('deletes keys when value is null', () => {
+      window.location.hash = '#/?a=1&b=2';
+      const hq = new HashQuery();
+      hq.update({ a: null, c: '3' });
+
+      expect(window.history.pushState).toHaveBeenCalledWith(
+        null,
+        '',
+        '/test#/?b=2&c=3' // ❌ 这里也错了！
+      );
+    });
+  });
 });

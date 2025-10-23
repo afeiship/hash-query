@@ -1,6 +1,6 @@
 {
   "name": "@jswork/hash-query",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Manage query parameters in URL hash.",
   "npmClient": "pnpm",
   "main": "dist/index.cjs.js",

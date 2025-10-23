@@ -40,19 +40,17 @@ describe('HashQuery', () => {
     });
   });
 
-  describe('toJson()', () => {
+  describe('static.toJson()', () => {
     it('returns plain object', () => {
-      window.location.hash = '#/?theme=dark';
-      const hq = new HashQuery();
-      expect(hq.toJson()).toEqual({ theme: 'dark' });
+      const params = new URLSearchParams('theme=dark');
+      expect(HashQuery.toJson(params)).toEqual({ theme: 'dark' });
     });
   });
 
-  describe('fromJson()', () => {
+  describe('static.fromJson()', () => {
     it('creates URLSearchParams from plain object', () => {
-      const hq = new HashQuery();
       const obj = { a: '1', b: '2' };
-      const params = hq.fromJson(obj);
+      const params = HashQuery.fromJson(obj);
       expect(params.get('a')).toBe('1');
       expect(params.get('b')).toBe('2');
     });

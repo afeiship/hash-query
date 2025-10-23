@@ -81,21 +81,30 @@ class HashQuery {
   }
 
   /**
-   * 从普通 JavaScript 对象创建 URLSearchParams
-   * @param json 键值对对象
-   * @returns URLSearchParams 实例
-   */
-  fromJson(json: Record<string, string>): URLSearchParams {
-    return new URLSearchParams(json);
-  }
-
-  /**
    * 将当前 hash 查询参数转换为普通 JavaScript 对象
    * 注意：若存在重复 key，只保留最后一个值
    * @returns Record<string, string>
    */
   toJson(): Record<string, string> {
-    return Object.fromEntries(this.get());
+    return HashQuery.toJson(this.get());
+  }
+
+  /**
+   * 从普通 JavaScript 对象创建 URLSearchParams
+   * @param json 键值对对象
+   * @returns URLSearchParams 实例
+   */
+  static fromJson(json: Record<string, string>): URLSearchParams {
+    return new URLSearchParams(json);
+  }
+
+  /**
+   * 将 URLSearchParams 转换为普通 JavaScript 对象
+   * 注意：若存在重复 key，只保留最后一个值
+   * @returns Record<string, string>
+   */
+  static toJson(params: URLSearchParams): Record<string, string> {
+    return Object.fromEntries(params);
   }
 }
 

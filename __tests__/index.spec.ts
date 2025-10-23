@@ -48,6 +48,16 @@ describe('HashQuery', () => {
     });
   });
 
+  describe('fromJson()', () => {
+    it('creates URLSearchParams from plain object', () => {
+      const hq = new HashQuery();
+      const obj = { a: '1', b: '2' };
+      const params = hq.fromJson(obj);
+      expect(params.get('a')).toBe('1');
+      expect(params.get('b')).toBe('2');
+    });
+  });
+
   describe('update()', () => {
     it('merges new params with existing ones', () => {
       window.location.hash = '#/?theme=light&lang=zh';

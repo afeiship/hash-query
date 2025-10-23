@@ -15,9 +15,35 @@ yarn add @jswork/hash-query
 ```js
 import HashQuery from '@jswork/hash-query';
 
-HashQuery(1024);
+const hq = new HashQuery();
 
-// [1000, 0, 20, 4]
+// Get query parameters
+const params = hq.get();
+console.log(params.get('id')); // null
+
+// Set query parameters
+hq.set(new URLSearchParams({ id: '123', name: 'test' }));
+// URL will be updated to #/?id=123&name=test
+
+// Update query parameters
+hq.update({ name: 'new_test', age: '30' });
+// URL will be updated to #/?id=123&name=new_test&age=30
+
+hq.update({ age: null });
+// URL will be updated to #/?id=123&name=new_test
+
+// Convert to JSON
+const json = hq.toJson();
+console.log(json); // { id: '123', name: 'new_test' }
+
+// Create from JSON
+const newParams = HashQuery.fromJson({ city: 'shanghai' });
+hq.set(newParams);
+// URL will be updated to #/?city=shanghai
+
+// Static toJson
+const staticJson = HashQuery.toJson(new URLSearchParams('key=value'));
+console.log(staticJson); // { key: 'value' }
 ```
 
 ## license

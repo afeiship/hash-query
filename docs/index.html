@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>@jswork/hash-query Demo</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      max-width: 680px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.6;
+      color: #333;
+    }
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 24px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 8px;
+    }
+    .card {
+      background: #fafafa;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 24px;
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 1.3em;
+      color: #222;
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: 600;
+    }
+    input, button {
+      padding: 6px 10px;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+    button {
+      margin-right: 8px;
+      cursor: pointer;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    button:hover { opacity: 0.9; }
+    button.secondary { background: #6c757d; }
+    button.danger { background: #dc3545; }
+    .params-list {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+    .params-list li {
+      margin-bottom: 5px;
+      font-family: monospace;
+      background: #f1f1f1;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+    code {
+      background: #f1f1f1;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-size: 0.95em;
+    }
+  </style>
+</head>
+<body>
+  <h1>@jswork/hash-query Demo</h1>
+
+  <div class="card">
+    <h2>当前 Hash 查询参数</h2>
+    <ul id="params-list" class="params-list">
+      <li>（无参数）</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>操作参数</h2>
+    <label for="key">键 (key):</label>
+    <input type="text" id="key" placeholder="例如: theme" />
+
+    <label for="value">值 (value):</label>
+    <input type="text" id="value" placeholder="留空或输入 null 表示删除" />
+
+    <div style="margin-top: 16px;">
+      <button id="btn-update">Update (增量更新)</button>
+      <button id="btn-set" class="secondary">Set (全量替换)</button>
+      <button id="btn-clear" class="danger">清空参数</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>说明</h2>
+    <p>本 demo 使用 <a href="https://unpkg.com/@jswork/hash-query" target="_blank"><code>@jswork/hash-query</code></a> 管理 URL hash 中的查询参数。</p>
+    <p>例如：地址栏为 <code>...#/app?lang=zh&debug=true</code>，则管理 <code>?lang=zh&debug=true</code> 部分。</p>
+    <p>支持方法：</p>
+    <ul>
+      <li><code>hq.get()</code> → 获取 <code>URLSearchParams</code></li>
+      <li><code>hq.set(params, replace?)</code> → 全量替换</li>
+      <li><code>hq.update({ key: value }, replace?)</code> → 增量更新（传 <code>null</code> 删除）</li>
+      <li><code>hq.toJson()</code> → 转为普通对象</li>
+    </ul>
+  </div>
+
+  <!-- 引入 CDN 版本 -->
+  <script type="module">
+    import HashQuery from 'https://unpkg.com/@jswork/hash-query/dist/index.esm.js';
+
+    const hq = new HashQuery();
+    const paramsListEl = document.getElementById('params-list');
+
+    function renderParams() {
+      const params = hq.toJson();
+      const entries = Object.entries(params);
+      if (entries.length === 0) {
+        paramsListEl.innerHTML = '<li>（无参数）</li>';
+      } else {
+        paramsListEl.innerHTML = entries
+          .map(([k, v]) => `<li><strong>${k}</strong> = <code>${v}</code></li>`)
+          .join('');
+      }
+    }
+
+    // 初始渲染 + 监听变化
+    renderParams();
+    window.addEventListener('hashchange', renderParams);
+
+    // Update 按钮：增量更新
+    document.getElementById('btn-update').onclick = () => {
+      const key = document.getElementById('key').value.trim();
+      const valueInput = document.getElementById('value').value.trim();
+      if (!key) return alert('请输入键');
+
+      const value = valueInput === 'null' || valueInput === '' ? null : valueInput;
+      hq.update({ [key]: value });
+    };
+
+    // Set 按钮：全量替换（仅保留当前输入的参数）
+    document.getElementById('btn-set').onclick = () => {
+      const key = document.getElementById('key').value.trim();
+      const valueInput = document.getElementById('value').value.trim();
+      if (!key) return alert('请输入键');
+
+      const params = new URLSearchParams();
+      const value = valueInput === 'null' || valueInput === '' ? null : valueInput;
+      if (value !== null) {
+        params.set(key, value);
+      }
+      hq.set(params);
+    };
+
+    // 清空
+    document.getElementById('btn-clear').onclick = () => {
+      hq.set(new URLSearchParams(), true);
+    };
+  </script>
+</body>
+</html>

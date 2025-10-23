@@ -1,18 +1,50 @@
-import fn from '../src';
+// __tests__/HashQuery.test.ts
 
-describe('Normal test cases', () => {
-  test('number is equal 0/10/100/1000/10000', () => {
-    expect(fn(0)).toEqual([0]);
-    expect(fn(10)).toEqual([10, 0]);
-    expect(fn(30)).toEqual([30, 0]);
-    expect(fn(40)).toEqual([40, 0]);
-    expect(fn(50)).toEqual([50, 0]);
-    expect(fn(60)).toEqual([60, 0]);
-    expect(fn(70)).toEqual([70, 0]);
-    expect(fn(80)).toEqual([80, 0]);
-    expect(fn(90)).toEqual([90, 0]);
-    expect(fn(100)).toEqual([100, 0, 0]);
-    expect(fn(1000)).toEqual([1000, 0, 0, 0]);
-    expect(fn(10000)).toEqual([10000, 0, 0, 0, 0]);
+import HashQuery from '../src';
+
+describe('HashQuery', () => {
+  beforeEach(() => {
+    // 重置 URL 到干净状态 —— 使用 pushState，不触发 navigation
+    window.history.pushState(null, '', '/test'); // pathname = /test, hash = ''
+    jest.clearAllMocks();
+  });
+
+  beforeAll(() => {
+    jest.spyOn(window.history, 'pushState');
+    jest.spyOn(window.history, 'replaceState');
+    jest.spyOn(window, 'dispatchEvent');
+  });
+
+  afterAll(() => {
+    jest.restoreAllMocks();
+  });
+
+  describe('get()', () => {
+    it('parses query from hash', () => {
+      // ✅ 安全：只改 hash
+      window.location.hash = '#/page?id=123&lang=zh';
+      const hq = new HashQuery();
+      expect(hq.get().get('id')).toBe('123');
+    });
+  });
+
+  describe('set()', () => {
+    it('updates hash query correctly', () => {
+      // 设置初始状态
+      window.history.pushState(null, '', '/app?ref=home#/view');
+
+      const hq = new HashQuery();
+      const params = new URLSearchParams({ id: '42' });
+      hq.set(params);
+      expect(window.history.pushState).toHaveBeenCalledWith(null, '', '/app?ref=home#/view?id=42');
+    });
+  });
+
+  describe('toJson()', () => {
+    it('returns plain object', () => {
+      window.location.hash = '#/?theme=dark';
+      const hq = new HashQuery();
+      expect(hq.toJson()).toEqual({ theme: 'dark' });
+    });
   });
 });
